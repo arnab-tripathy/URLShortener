@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+
 const dblink="mongodb+srv://arnab:msd007@cluster0.ugwnc.mongodb.net/test?retryWrites=true&w=majority";
 const mongoose = require('mongoose');
 mongoose.connect(dblink, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true, useFindAndModify:false});
@@ -50,7 +50,10 @@ app.get("/:userid",async (req,res) =>{
  // console.log("routing"+ req.params.userid);
 
 });
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log("Example app listening");
   });
