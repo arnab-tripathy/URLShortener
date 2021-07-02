@@ -34,7 +34,7 @@ res.render("home", {id:uid})
 
 
 });
-app.get("/:userid", (req,res) =>{
+app.get("/:userid", async (req,res) =>{
   console.log("in get");
   try {
     Url.find({"id": req.params.userid},function(err,urls){
