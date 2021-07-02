@@ -24,16 +24,18 @@ app.get("/",function(req,res){
 res.render("home",{id:null});
 });
 app.post("/",function(req,res){
+  console.log("in post");
   var uid=Math.random().toString(36).slice(-6);
   const longurl= new Url({name:req.body.urlin ,
   id:uid});
   longurl.save();
-  
+  console.log(req.body.urlin+"kk"+uid);
 res.render("home", {id:uid})
-//console.log(req.body.urlin+"kk"+uid);
+
 
 });
-app.get("/:userid",async (req,res) =>{
+app.get("/:userid", (req,res) =>{
+  console.log("in get");
   try {
     Url.find({"id": req.params.userid},function(err,urls){
       if(err){
@@ -54,6 +56,7 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
 }
+
 app.listen(port, () => {
-    console.log("Example app listening");
+    console.log(`Example app listening at http://localhost:${port}`)
   });
