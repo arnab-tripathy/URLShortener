@@ -21,6 +21,7 @@ const Url=mongoose.model("Url",urlschema);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.get("/",function(req,res){
+  console.log("getting it fukinnnnnn");
 res.render("home",{id:null});
 });
 app.post("/",function(req,res){
