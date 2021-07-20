@@ -35,18 +35,15 @@ res.render("home", {id:uid})
 
 
 });
-app.get("/:userid",   (req,res) =>{
+app.get("/:userid",   async (req,res) =>{
   console.log("in get");
   try {
-    Url.find({"id": req.params.userid},async(err,urls) => {
-      if(err){
-        console.log(err)
-      }
-     else{
-        console.log("urlfound"+urls);
-         res.redirect(urls[0].name);
-     }
-  })
+   var a=await  Url.find({"id": req.params.userid});
+ if(a){
+   res.redirect(a[0].name);
+ }
+   
+
   } catch (error) {
     console.log(error);
   }
